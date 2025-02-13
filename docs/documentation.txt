@@ -1,0 +1,13 @@
+How to Test
+
+Simulation/Synthesis
+======================
+Run the testbench against the design
+
+On-chip
+======================
+Supply a clock, assert go, give some numbers, and assert finish to get the range.
+
+Report
+======================
+I did the exercise.

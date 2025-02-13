@@ -38,7 +38,8 @@ This is an example outline you can modify and use in your final project submissi
 
 ## Project Name
 
-A short description of what your project does and how it works. Feel free to include images
+RangeFinder: determines the range between the maximum and minimum of a set of numbers.
+On the clock edge when go is asserted and every clock edge after, up until (and including) the edge where finish is asserted, the design will take a look at the data_in value, interpret them as unsigned, and keep track of the current maximum and minimum. Outputs the range the difference between the largest and smallest when finish is asserted.
 
 ## IO
 
@@ -46,15 +47,14 @@ An IO table listing all of your inputs and outputs and their function, like the 
 
 | Input/Output	| Description|																
 |-------------|--------------------------------------------------|
-| io_in[0]    | choose vga mode, when 0 640x480. When 1, 800x480 |
-| io_in[11:1] | unused                                           |
-| io_out[2:0] | Red channel                                      |
-| io_out[5:3] | Green channel                                    |
-| io_out[8:6] | Blue channel                                     |
-| io_out[9]   | HS, horizontal sync                              |
-| io_out[10]  | VS, vertical sync                                |
-| io_out[11]  | liveness check.  Toggles every couple of seconds |
+| io_in[7:0]  | Data_in                                          |
+| io_in[8]    | Go                                               |
+| io_in[9]    | Finish                                           |
+| io_in[11:10]| Unused                                           |
+| io_out[7:0] | Range                                            |
+| io_out[8]   | Debug error                                      |
+| io_out[11:9]| Unused                                           |
 
 ## How to Test
 
-A short description of how to test the design post-tapeout
+Supply a clock, assert go, give some numbers, and assert finish to get the range.

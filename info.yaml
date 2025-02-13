@@ -4,6 +4,7 @@ project:
     - toplevel_chip.v
     - chip.sv
     - decoder.v
+    - RangeFinder.sv
   top_module:  "toplevel_chip"
 
 # As everyone will have access to all designs, try to make it easy for someone new to your design to know what
@@ -13,33 +14,25 @@ project:
 #
 # This info will be automatically collected and used to make a datasheet for the chip.
 documentation: 
-  author:       "PLACEHOLDER"      # Your name
+  author:       "Alice"      # Your name
   discord:      ""      # Your discord handle
-  title:        "PLACEHOLDER"      # Project title
-  description:  "PLACEHOLDER"      # Short description of what your project does
-  how_it_works: "PLACEHOLDER"      # Longer description of how the project works
-  how_to_test:  "PLACEHOLDER"      # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
-  external_hw:  "PLACEHOLDER"      # Describe any external hardware needed
+  title:        "RangeFinder"      # Project title
+  description:  "Determines the range between the maximum and minimum of a 
+  set of numbers."      # Short description of what your project does
+  how_it_works: "On the clock edge when go is asserted and every clock edge after, up until (and including) the edge where finish is asserted, the design will take a look at the data_in value, interpret them as unsigned, and keep track of the current maximum and minimum. Outputs the range the difference between the largest and smallest when finish is asserted."      # Longer description of how the project works
+  how_to_test:  "Supply a clock, assert go, give some numbers, and assert finish."      # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
+  external_hw:  "Anything needed to drive the inputs (e.g. switches/buttons) and outputs (e.g. LEDs)."      # Describe any external hardware needed
   language:     "verilog" # other examples include Verilog, Amaranth, VHDL, etc
   doc_link:     ""      # URL to longer form documentation, eg the README.md in your repository
   clock_hz:     1000       # Clock frequency in Hz (if required)
   picture:      ""      # relative path to a picture in your repository
   inputs:               # a description of what the inputs do
-    - none
-    - none
-    - none
-    - none
-    - none
-    - none
-    - none
-    - none
+    - clock
+    - reset
+    - go: tells design to start reading in numbers
+    - finish: tells design to stop reading in numbers
+    - input number (8 bits)
   outputs:
-    - none
-    - none
-    - none
-    - none
-    - none
-    - none
-    - none
-    - none
+    - debug_error (whether or not illegal behavior has occured)
+    - range of series of numbers (8 bits)
 
