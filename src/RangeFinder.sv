@@ -49,3 +49,33 @@ module RangeFinder
    end
 
 endmodule: RangeFinder
+
+// Compares 2 WIDTH bit numbers A and B 
+// and sets AeqB when equal,
+// sets AltB if A < B and
+// sets AgtB if A > B
+module MagComparator
+  #(parameter WIDTH = 8)
+  (input logic [WIDTH-1:0] A, B, 
+   output logic AltB, AeqB, AgtB);
+
+   assign AeqB = A === B;
+   assign AltB = A < B;
+   assign AgtB = A > B;
+
+endmodule: MagComparator
+
+// Stores and loads when enabled WIDTH bit numbers
+module Register
+  #(parameter WIDTH = 8)
+   (input logic en, clock, reset,
+    input logic [WIDTH-1:0] D,
+    output logic [WIDTH-1:0] Q);
+
+    always_ff @(posedge clock, posedge reset)
+      if (reset)
+        Q <= '0;
+      else if (en)
+        Q <= D;
+
+endmodule: Register

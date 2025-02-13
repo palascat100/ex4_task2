@@ -7,7 +7,7 @@ module my_chip (
     input logic reset // Important: Reset is ACTIVE-HIGH
 );
     
-     RangeFinder #(8) (.data_in(io_in[7:0]), .clock, .reset, 
+     RangeFinder #(8) rf(.data_in(io_in[7:0]), .clock, .reset, 
                                         .go(io_in[8]), .finish(io_in[9]),
                                         .range(io_out[7:0]),
                                         .debug_error(io_out[8]));
